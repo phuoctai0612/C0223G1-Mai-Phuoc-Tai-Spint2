@@ -10,8 +10,24 @@ public class Customer {
     private String email;
     @OneToOne
     private TypeCustomer typeCustomer;
+    @OneToOne
+    private Account account;
 
     public Customer() {
+    }
+
+    public Customer(String email, TypeCustomer typeCustomer) {
+        this.email = email;
+        this.typeCustomer = typeCustomer;
+    }
+
+    public Customer(String email) {
+        this.email = email;
+    }
+
+    public Customer(String email, Account account) {
+        this.email = email;
+        this.account = account;
     }
 
     public Customer(Long id, String email, TypeCustomer typeCustomer) {
@@ -38,6 +54,14 @@ public class Customer {
 
     public TypeCustomer getTypeCustomer() {
         return typeCustomer;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public void setTypeCustomer(TypeCustomer typeCustomer) {

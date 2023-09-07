@@ -11,9 +11,14 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String otherName;
+    private String img;
     private String timeEndMovie;
     private boolean statusMovie;
     private String yearStart;
+    private String timePost;
+
+    private String description;
     @OneToOne
     private Nation nation;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -32,12 +37,33 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Long id, String name, String timeEndMovie, boolean statusMovie, String yearStart, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+
+
+    public Movie(Long id, String name, String img, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
         this.id = id;
         this.name = name;
+        this.img = img;
         this.timeEndMovie = timeEndMovie;
         this.statusMovie = statusMovie;
         this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.description = description;
+        this.nation = nation;
+        this.categories = categories;
+        this.authors = authors;
+        this.actors = actors;
+    }
+
+    public Movie(Long id, String name, String otherName, String img, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+        this.id = id;
+        this.name = name;
+        this.otherName = otherName;
+        this.img = img;
+        this.timeEndMovie = timeEndMovie;
+        this.statusMovie = statusMovie;
+        this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.description = description;
         this.nation = nation;
         this.categories = categories;
         this.authors = authors;
@@ -60,8 +86,24 @@ public class Movie {
         this.name = name;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getTimeEndMovie() {
         return timeEndMovie;
+    }
+
+    public String getOtherName() {
+        return otherName;
+    }
+
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
     }
 
     public void setTimeEndMovie(String timeEndMovie) {
@@ -76,12 +118,20 @@ public class Movie {
         this.statusMovie = statusMovie;
     }
 
-    public String getYearStart() {
-        return yearStart;
+    public String getTimePost() {
+        return timePost;
     }
 
-    public void setYearStart(String yearStart) {
-        this.yearStart = yearStart;
+    public void setTimePostt(String timePost) {
+        this.timePost = timePost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Nation getNation() {
@@ -115,4 +165,17 @@ public class Movie {
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
+
+    public String getYearStart() {
+        return yearStart;
+    }
+
+    public void setYearStart(String yearStart) {
+        this.yearStart = yearStart;
+    }
+
+    public void setTimePost(String timePost) {
+        this.timePost = timePost;
+    }
 }
+

@@ -4,4 +4,5 @@ import com.example.movie.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IAccountRepository extends JpaRepository<Account,Long> {
+ Account findByNameAccount(String name);
 }

@@ -15,4 +15,9 @@ public class AuthorService implements IAuthorService {
     public List<Author> getAuthorById(Long id) {
         return repository.getAuthorById(id);
     }
+
+    @Override
+    public Author getAuthor(Long id) {
+        return repository.findById(id).get();
+    }
 }

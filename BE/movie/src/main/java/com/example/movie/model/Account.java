@@ -9,20 +9,15 @@ public class Account {
 
     private String nameAccount;
     private String password;
+
     @OneToOne
     private Role role;
+
 
     public Account() {
     }
 
 
-
-    public Account(Long id, String nameAccount, String password, Role role) {
-        this.id = id;
-        this.nameAccount = nameAccount;
-        this.password = password;
-        this.role = role;
-    }
 
     public Account(String email, String password, Role role) {
         this.nameAccount = email;
@@ -30,6 +25,14 @@ public class Account {
         this.role = role;
     }
 
+    public Account(Long id, String nameAccount, String password, Role role) {
+        this.id = id;
+        this.nameAccount = nameAccount;
+        this.password = password;
+
+        this.role = role;
+
+    }
 
     public Long getId() {
         return id;
@@ -52,6 +55,7 @@ public class Account {
         return password;
     }
 
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -63,4 +67,6 @@ public class Account {
     public void setNameAccount(String nameAccount) {
         this.nameAccount = nameAccount;
     }
+
+
 }

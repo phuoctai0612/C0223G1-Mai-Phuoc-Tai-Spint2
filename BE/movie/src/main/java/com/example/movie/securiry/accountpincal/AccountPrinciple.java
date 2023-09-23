@@ -43,7 +43,6 @@ public class AccountPrinciple implements UserDetails {
              account.getPassword(),
              authorities
      );
-
  }
     @Override
     public String getPassword() {

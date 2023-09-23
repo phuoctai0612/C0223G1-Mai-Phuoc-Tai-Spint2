@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IAuthorService {
     List<Author> getAuthorById(Long id);
-
+    Author getAuthor(Long id);
 }

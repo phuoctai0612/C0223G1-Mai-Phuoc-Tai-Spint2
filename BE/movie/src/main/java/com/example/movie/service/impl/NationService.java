@@ -15,4 +15,9 @@ public class NationService implements INationService {
     public List<Nation> listNation() {
         return nationRepository.findAll();
     }
+
+    @Override
+    public Nation findNationById(Long id) {
+        return nationRepository.findById(id).get();
+    }
 }

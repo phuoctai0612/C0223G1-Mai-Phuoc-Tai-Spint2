@@ -32,29 +32,32 @@ public class AccountController {
     @Autowired
     private ICustomerService customerService;
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
     @Autowired
-    JwtProvider jwtProvider;
+    private JwtProvider jwtProvider;
 
     @PostMapping("")
     public ResponseEntity<?> createAccount(@RequestParam("email") String email, @RequestParam("password") String password) {
+        Account account1 = accountService.findByEmail(email);
+        if (account1 == null) {
+            Role role = roleService.findRoleById(1L);
+            String encoderNewPassword = passwordEncoder.encode(password);
+            Account account = new Account(email, encoderNewPassword, role);
+            accountService.createAccount(account);
+            Customer customer = new Customer(account.getNameAccount(), account);
+            customerService.createCustomer(customer);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
-        Role role = roleService.findRoleById(1L);
-        String encoderNewPassword = passwordEncoder.encode(password);
-        Account account = new Account(email, encoderNewPassword, role);
-        accountService.createAccount(account);
-        Customer customer = new Customer(account.getNameAccount(), account);
-        customerService.createCustomer(customer);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/signin")
     public ResponseEntity<?> login(@RequestParam("email") String email, @RequestParam("password") String password) {
-
         Account account = accountService.findByEmail(email);
-
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         boolean passwordsMatch = passwordEncoder.matches(password, account.getPassword());
         if (account != null && passwordsMatch) {
@@ -65,17 +68,16 @@ public class AccountController {
             String token = jwtProvider.createToken(authentication);
             AccountPrinciple userPrinciple = (AccountPrinciple) authentication.getPrincipal();
             return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getUsername(), userPrinciple.getAuthorities()));
-        }else {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
-
     }
-@GetMapping("/token/{token}")
-public ResponseEntity<?> getAccountWithToken(@PathVariable String token){
-        return new ResponseEntity<>(jwtProvider.getUserNameToken(token),HttpStatus.OK);
-}
+
+    @GetMapping("/token/{token}")
+    public ResponseEntity<?> getAccountWithToken(@PathVariable String token) {
+        return new ResponseEntity<>(jwtProvider.getUserNameToken(token), HttpStatus.OK);
+    }
+
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @GetMapping("/aa")
     public ResponseEntity<?> aa() {

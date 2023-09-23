@@ -5,10 +5,7 @@ import com.example.movie.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,12 @@ public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
     @GetMapping("")
-    public ResponseEntity<List<Category>> getListNation(){
+    public ResponseEntity<List<Category>> getListCategory(){
         return new ResponseEntity<>(categoryService.getListCategory(), HttpStatus.OK) ;
     }
+       @GetMapping("/getCategory/{id}")
+    public ResponseEntity<Category> getCategory(@PathVariable("id")Long id){
+        return new ResponseEntity<>(categoryService.findCategoryById(id), HttpStatus.OK) ;
+    }
+
 }

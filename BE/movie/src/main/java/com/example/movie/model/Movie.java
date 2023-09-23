@@ -12,12 +12,17 @@ public class Movie {
     private Long id;
     private String name;
     private String otherName;
+    @Column(columnDefinition = "LongText")
     private String img;
+    private Integer view;
     private String timeEndMovie;
     private boolean statusMovie;
     private String yearStart;
     private String timePost;
-
+    @Column(columnDefinition = "LongText")
+    private String video;
+    private String trailer;
+    @Column(columnDefinition = "LongText")
     private String description;
     @OneToOne
     private Nation nation;
@@ -37,7 +42,41 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(Long id, String name, String otherName, String img, int view, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+        this.id = id;
+        this.name = name;
+        this.otherName = otherName;
+        this.img = img;
+        this.view = view;
+        this.timeEndMovie = timeEndMovie;
+        this.statusMovie = statusMovie;
+        this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.description = description;
+        this.nation = nation;
+        this.categories = categories;
+        this.authors = authors;
+        this.actors = actors;
+    }
 
+    public Movie(Long id, String name, String otherName, String img, Integer view, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String video, String trailer, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+        this.id = id;
+        this.name = name;
+        this.otherName = otherName;
+        this.img = img;
+        this.view = view;
+        this.timeEndMovie = timeEndMovie;
+        this.statusMovie = statusMovie;
+        this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.video = video;
+        this.trailer = trailer;
+        this.description = description;
+        this.nation = nation;
+        this.categories = categories;
+        this.authors = authors;
+        this.actors = actors;
+    }
 
     public Movie(Long id, String name, String img, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
         this.id = id;
@@ -70,6 +109,49 @@ public class Movie {
         this.actors = actors;
     }
 
+    public Movie(Long id, String name, String otherName, String img, Integer view, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+        this.id = id;
+        this.name = name;
+        this.otherName = otherName;
+        this.img = img;
+        this.view = view;
+        this.timeEndMovie = timeEndMovie;
+        this.statusMovie = statusMovie;
+        this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.description = description;
+        this.nation = nation;
+        this.categories = categories;
+        this.authors = authors;
+        this.actors = actors;
+    }
+
+    public Movie(Long id, String name, String otherName, String img, Integer view, String timeEndMovie, boolean statusMovie, String yearStart, String timePost, String video, String description, Nation nation, List<Category> categories, List<Author> authors, List<Actor> actors) {
+        this.id = id;
+        this.name = name;
+        this.otherName = otherName;
+        this.img = img;
+        this.view = view;
+        this.timeEndMovie = timeEndMovie;
+        this.statusMovie = statusMovie;
+        this.yearStart = yearStart;
+        this.timePost = timePost;
+        this.video = video;
+        this.description = description;
+        this.nation = nation;
+        this.categories = categories;
+        this.authors = authors;
+        this.actors = actors;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
     public Long getId() {
         return id;
     }
@@ -94,12 +176,24 @@ public class Movie {
         this.img = img;
     }
 
+    public void setView(Integer view) {
+        this.view = view;
+    }
+
     public String getTimeEndMovie() {
         return timeEndMovie;
     }
 
     public String getOtherName() {
         return otherName;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
     }
 
     public void setOtherName(String otherName) {
@@ -176,6 +270,14 @@ public class Movie {
 
     public void setTimePost(String timePost) {
         this.timePost = timePost;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 }
 

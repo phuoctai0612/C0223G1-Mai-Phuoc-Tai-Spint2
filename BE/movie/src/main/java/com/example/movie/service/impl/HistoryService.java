@@ -29,7 +29,6 @@ public class HistoryService implements IHistoryService {
     public Page<History> findByAccount_Id(Pageable pageable,Long id) {
         return historyRepository.findByAccount_Id(pageable,id);
     }
-
     @Override
     public List<History> findAll() {
         return historyRepository.findAll();
